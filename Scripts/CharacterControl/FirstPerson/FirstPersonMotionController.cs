@@ -400,14 +400,8 @@ namespace HatFeather.Shared.CharacterControl
         {
             // print("Jump motion");
 
-            float targetSpeed = Mathf.Lerp(getSpeed(input), 0, m_GroundInfo.slope / 90 * m_SlopeEffector);
-            Vector3 moveDir = (transform.right * input.x + transform.forward * input.y).normalized;
-
-            motion = Vector3.Lerp(m_CharacterController.velocity, Vector3.ProjectOnPlane(moveDir, m_GroundInfo.normal) *
-                targetSpeed, deltaTime * m_Acceleration);
+            motion = characterController.velocity;
             motion.y = m_JumpSpeed;
-            motion += getAdditveMotionFromGroundDelta(deltaTime);
-
             motion *= deltaTime;
         }
 
